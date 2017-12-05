@@ -1,0 +1,11 @@
+sa45/team9/inventoryApp/repository/EmployeeRepository.class
+sa45/team9/inventoryApp/model/Parts.class
+sa45/team9/inventoryApp/model/Suppliers.class
+sa45/team9/inventoryApp/model/Customers.class
+sa45/team9/inventoryApp/model/PartsDetails.class
+sa45/team9/inventoryApp/init/Initializer.class
+sa45/team9/inventoryApp/init/WebAppConfig.class
+sa45/team9/inventoryApp/model/Employees.class
+sa45/team9/inventoryApp/controller/HomeController.class
+sa45/team9/inventoryApp/model/OrderDetails.class
+sa45/team9/inventoryApp/model/Orders.class
