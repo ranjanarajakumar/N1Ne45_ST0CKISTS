@@ -13,13 +13,13 @@ import javax.persistence.Table;
 @Table(name="Suppliers")
 public class Suppliers {
 	
-//	@OneToMany(targetEntity=Parts.class, mappedBy="suppliers")
-//	private List<Parts> parts;
+	@OneToMany(targetEntity=Parts.class, mappedBy="suppliers")
+	private List<Parts> parts;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "SupplierID")
-	private int SupplierID;
+	private String SupplierID;
 	@Basic
 	@Column(name = "SupplierName")
 	private String SupplierName;
@@ -45,11 +45,11 @@ public class Suppliers {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Suppliers(int supplierID) {
+	public Suppliers(String supplierID) {
 		super();
 		SupplierID = supplierID;
 	}
-	public Suppliers(int supplierID, String supplierName, String supplierContactName, String supplierContactTitle,
+	public Suppliers(String supplierID, String supplierName, String supplierContactName, String supplierContactTitle,
 			String supplierAddress, String supplierPostalCode, String supplierPhoneNumber, String supplierFax) {
 		super();
 		SupplierID = supplierID;
@@ -61,10 +61,10 @@ public class Suppliers {
 		SupplierPhoneNumber = supplierPhoneNumber;
 		SupplierFax = supplierFax;
 	}
-	public int getSupplierID() {
+	public String getSupplierID() {
 		return SupplierID;
 	}
-	public void setSupplierID(int supplierID) {
+	public void setSupplierID(String supplierID) {
 		SupplierID = supplierID;
 	}
 	public String getSupplierName() {
@@ -120,7 +120,7 @@ public class Suppliers {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + SupplierID;
+		result = prime * result + ((SupplierID == null) ? 0 : SupplierID.hashCode());
 		return result;
 	}
 	@Override
@@ -132,8 +132,12 @@ public class Suppliers {
 		if (getClass() != obj.getClass())
 			return false;
 		Suppliers other = (Suppliers) obj;
-		if (SupplierID != other.SupplierID)
+		if (SupplierID == null) {
+			if (other.SupplierID != null)
+				return false;
+		} else if (!SupplierID.equals(other.SupplierID))
 			return false;
 		return true;
 	}
+	
 }

@@ -6,6 +6,7 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
@@ -13,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
@@ -20,18 +22,18 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+//import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan(basePackages = "sa45.team9.inventoryApp")
 @PropertySource({"classpath:application.properties" })
-//,"classpath:/i18n/messages.properties"
 @EnableJpaRepositories("sa45.team9.inventoryApp.repository")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 	
@@ -83,7 +85,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		source.setBasename(env.getRequiredProperty("message.source.basename"));
 		source.setUseCodeAsDefaultMessage(true);
 		source.setDefaultEncoding("UTF-8");
-		// # -1 : never reload, 0 always reload
 		source.setCacheSeconds(0);
 		return source;
 	}
@@ -92,6 +93,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 //	  public void addViewControllers(ViewControllerRegistry registry) {
 //	    registry.addViewController("/").setViewName("home");
 //	  }
+	
 	
 	@Bean
 	public ViewResolver viewResolver() {
@@ -104,11 +106,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-		registry.addResourceHandler("/img/**").addResourceLocations("/img/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-		registry.addResourceHandler("/ajax/**").addResourceLocations("/ajax/");
-		registry.addResourceHandler("/plugins/**").addResourceLocations("/plugins/");
+		//registry.addResourceHandler("img/**").addResourceLocations("/resources/img/");
+		//registry.addResourceHandler("css/**").addResourceLocations("/resources/css/");
+		//registry.addResourceHandler("js/**").addResourceLocations("/resources/js/");
+		//registry.addResourceHandler("ajax/**").addResourceLocations("/resources/ajax/");
+		//registry.addResourceHandler("plugins/**").addResourceLocations("/resources/plugins/");
+		registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
 	}
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -121,5 +124,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
 		cookieLocaleResolver.setDefaultLocale(StringUtils.parseLocaleString("en"));
 		return cookieLocaleResolver;
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
 	}
 }

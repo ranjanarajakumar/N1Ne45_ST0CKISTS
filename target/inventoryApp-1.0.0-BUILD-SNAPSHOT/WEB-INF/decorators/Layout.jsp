@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,7 +24,7 @@
 <link href="plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
 <link href="css/style_v2.css" rel="stylesheet">
 <link href="plugins/chartist/chartist.min.css" rel="stylesheet">
-<dec:head />
+<decorator:head />
 </head>
 <body>
 <!--Start Header-->
@@ -322,7 +323,7 @@
 		</div>
 <!--Start Content-->
 <div id="content" class="col-xs-12 col-sm-10">
-	<dec:body />
+	<decorator:body />
 </div>
 <!--End Container-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

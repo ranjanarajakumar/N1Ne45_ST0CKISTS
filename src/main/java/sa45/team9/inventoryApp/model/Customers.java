@@ -11,17 +11,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Customers")
 public class Customers {
-//	@ManyToOne
-//	@JoinColumn(name="EmployeeID")
-//	private Employees employees;
+	
+	@ManyToOne
+	@JoinColumn(name="EmployeeID")
+	private Employees employees;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CustomerID")
-	private int customerID;
+	private String customerID;
 	@Basic
-	@Column(name = "customerServiceEmployeeID")
-	private int customerServiceEmployeeID;
+	@Column(name = "CustomerServiceEmployeeID")
+	private String customerServiceEmployeeID;
 	@Basic
 	@Column(name = "CustomerName")
 	private String customerName;
@@ -44,12 +45,12 @@ public class Customers {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Customers(int customerID) {
+	public Customers(String customerID) {
 		super();
 		this.customerID = customerID;
 	}
 	
-	public Customers(Employees employees, int customerID, int customerServiceEmployeeID, String customerName,
+	public Customers(Employees employees, String customerID, String customerServiceEmployeeID, String customerName,
 			String customerContactTite, String customerAddress, String customerPostalCode, String customerPhoneNumber,
 			String customerEmailAddress) {
 		super();
@@ -62,10 +63,10 @@ public class Customers {
 		this.customerPhoneNumber = customerPhoneNumber;
 		this.customerEmailAddress = customerEmailAddress;
 	}
-	public int getCustomerID() {
+	public String getCustomerID() {
 		return customerID;
 	}
-	public void setCustomerID(int customerID) {
+	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
 	public String getCustomerName() {
@@ -105,10 +106,10 @@ public class Customers {
 		this.customerEmailAddress = customerEmailAddress;
 	}
 	
-	public int getCustomerServiceEmployeeID() {
+	public String getCustomerServiceEmployeeID() {
 		return customerServiceEmployeeID;
 	}
-	public void setCustomerServiceEmployeeID(int customerServiceEmployeeID) {
+	public void setCustomerServiceEmployeeID(String customerServiceEmployeeID) {
 		this.customerServiceEmployeeID = customerServiceEmployeeID;
 	}
 	
@@ -124,7 +125,7 @@ public class Customers {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + customerID;
+		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
 		return result;
 	}
 	@Override
@@ -136,8 +137,12 @@ public class Customers {
 		if (getClass() != obj.getClass())
 			return false;
 		Customers other = (Customers) obj;
-		if (customerID != other.customerID)
+		if (customerID == null) {
+			if (other.customerID != null)
+				return false;
+		} else if (!customerID.equals(other.customerID))
 			return false;
 		return true;
 	}
+	
 }

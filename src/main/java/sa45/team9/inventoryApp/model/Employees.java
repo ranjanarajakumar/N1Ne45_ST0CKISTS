@@ -16,16 +16,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="Employee")
 public class Employees {
 	
-//	@OneToMany(targetEntity=Customers.class, mappedBy="employees")
-//	private List<Employees> employees;
-//	@OneToMany(targetEntity=Customers.class, mappedBy="employees")
-//	private List<Orders> orders;
+	@OneToMany(targetEntity=Customers.class, mappedBy="employees")
+	private List<Customers> customers;
+	@OneToMany(targetEntity=Orders.class, mappedBy="employees")
+	private List<Orders> orders;
 	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "EmployeeID")
-	private int employeeID;
+	private String employeeID;
 	@Basic
 	@Column(name = "EmployeeLastName")
 	private String employeeLastName;
@@ -59,18 +59,18 @@ public class Employees {
 	private String employeeSpecialization;
 	@Basic
 	@Column(name = "EmployeeReportTO")
-	private int employeeReportTO;
+	private String employeeReportTO;
 	public Employees() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Employees(int employeeID) {
+	public Employees(String employeeID) {
 		super();
 		this.employeeID = employeeID;
 	}
-	public Employees(int employeeID, String employeeLastName, String employeeFirstName, String employeeTitle,
+	public Employees(String employeeID, String employeeLastName, String employeeFirstName, String employeeTitle,
 			Date employeeBirthDate, Date employeeHireDate, String employeeAddress, String employeePostalCode,
-			String employeePhoneNumber, String employeeSpecialization, int employeeReportTO) {
+			String employeePhoneNumber, String employeeSpecialization, String employeeReportTO) {
 		super();
 		this.employeeID = employeeID;
 		this.employeeLastName = employeeLastName;
@@ -84,10 +84,10 @@ public class Employees {
 		this.employeeSpecialization = employeeSpecialization;
 		this.employeeReportTO = employeeReportTO;
 	}
-	public int getEmployeeID() {
+	public String getEmployeeID() {
 		return employeeID;
 	}
-	public void setEmployeeID(int employeeID) {
+	public void setEmployeeID(String employeeID) {
 		this.employeeID = employeeID;
 	}
 	public String getEmployeeLastName() {
@@ -138,10 +138,10 @@ public class Employees {
 	public void setEmployeePhoneNumber(String employeePhoneNumber) {
 		this.employeePhoneNumber = employeePhoneNumber;
 	}
-	public int getEmployeeReportTO() {
+	public String getEmployeeReportTO() {
 		return employeeReportTO;
 	}
-	public void setEmployeeReportTO(int employeeReportTO) {
+	public void setEmployeeReportTO(String employeeReportTO) {
 		this.employeeReportTO = employeeReportTO;
 	}
 	public String getEmployeeSpecialization() {
@@ -162,7 +162,7 @@ public class Employees {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + employeeID;
+		result = prime * result + ((employeeID == null) ? 0 : employeeID.hashCode());
 		return result;
 	}
 	@Override
@@ -174,8 +174,12 @@ public class Employees {
 		if (getClass() != obj.getClass())
 			return false;
 		Employees other = (Employees) obj;
-		if (employeeID != other.employeeID)
+		if (employeeID == null) {
+			if (other.employeeID != null)
+				return false;
+		} else if (!employeeID.equals(other.employeeID))
 			return false;
 		return true;
 	}
+	
 }

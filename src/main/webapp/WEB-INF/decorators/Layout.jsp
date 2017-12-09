@@ -2,28 +2,28 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SA45 Team9 Stockist Inventory Management System</title>
 <meta name="description" content="description">
 <meta name="author" content="DevOOPS">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="plugins/bootstrap/bootstrap.css" rel="stylesheet">
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+<link href="<c:url value="/resources/plugins/bootstrap/bootstrap.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/plugins/jquery-ui/jquery-ui.min.css" />" rel="stylesheet">
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-<link href="plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-<link href="plugins/xcharts/xcharts.min.css" rel="stylesheet">
-<link href="plugins/select2/select2.css" rel="stylesheet">
-<link href="plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
-<link href="css/style_v2.css" rel="stylesheet">
-<link href="plugins/chartist/chartist.min.css" rel="stylesheet">
-<dec:head />
+<link href="<c:url value="/resources/plugins/fancybox/jquery.fancybox.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/plugins/fullcalendar/fullcalendar.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/plugins/xcharts/xcharts.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/plugins/select2/select2.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/plugins/justified-gallery/justifiedGallery.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/style_v2.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/plugins/chartist/chartist.min.css" />" rel="stylesheet">
+<decorator:head />
 </head>
 <body>
 <!--Start Header-->
@@ -212,10 +212,10 @@
 					<ul class="dropdown-menu">
 						<li><a href="ajax/page_login.html">Login</a></li>
 						<li><a href="ajax/page_register.html">Register</a></li>
-						<li><a id="locked-screen" class="submenu" href="ajax/page_locked.html">Locked Screen</a></li>
+						<li><a id="locked-screen" class="submenu" href="/ajax/page_locked.html">Locked Screen</a></li>
 						<li><a class="ajax-link" href="ajax/page_contacts.html">Contacts</a></li>
 						<li><a class="ajax-link" href="ajax/page_feed.html">Feed</a></li>
-						<li><a class="ajax-link add-full" href="ajax/page_messages.html">Messages</a></li>
+						<li><a class="ajax-link add-full" href="/ajax/page_messages.html">Messages</a></li>
 						<li><a class="ajax-link" href="ajax/page_pricing.html">Pricing</a></li>
 						<li><a class="ajax-link" href="ajax/page_product.html">Product</a></li>
 						<li><a class="ajax-link" href="ajax/page_invoice.html">Invoice</a></li>
@@ -322,19 +322,19 @@
 		</div>
 <!--Start Content-->
 <div id="content" class="col-xs-12 col-sm-10">
-	<dec:body />
+	<decorator:body />
 </div>
 <!--End Container-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<script src="http://code.jquery.com/jquery.js"></script>-->
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="<c:url value="/resources/plugins/jquery/jquery.min.js" />"></script>
+<script src="<c:url value="/resources/plugins/jquery-ui/jquery-ui.min.js" />"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="plugins/bootstrap/bootstrap.min.js"></script>
-<script src="plugins/justified-gallery/jquery.justifiedGallery.min.js"></script>
-<script src="plugins/tinymce/tinymce.min.js"></script>
-<script src="plugins/tinymce/jquery.tinymce.min.js"></script>
+<script src="<c:url value="/resources/plugins/bootstrap/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/plugins/justified-gallery/jquery.justifiedGallery.min.js" />"></script>
+<script src="<c:url value="/resources/plugins/tinymce/tinymce.min.js" />"></script>
+<script src="<c:url value="/resources/plugins/tinymce/jquery.tinymce.min.js" />"></script>
 <!-- All functions for this theme + document.ready processing -->
-<script src="js/devoops.js"></script>
+<script src="<c:url value="/resources/js/devoops.js" />"></script>
 </body>
 </html>

@@ -1,40 +1,31 @@
 package sa45.team9.inventoryApp.model;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.util.List;
+
+import javax.persistence.*;
+
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="Orders")
 public class Orders {
 	
-//	@OneToOne
-//	@JoinColumn(name="OrderID")
-//	private OrderDetails orderDetails;
-	
-//	@ManyToOne
-//	@JoinColumn(name="OrderEmployeeID")
-//	private Employees employee;
+	@OneToMany(targetEntity=OrderDetails.class, mappedBy="orders")
+	private List<OrderDetails> orderDetails;
+		
+	@ManyToOne
+	@JoinColumn(name="EmployeeID")
+	private Employees employees;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "OrderID")
-	private int orderID;
+	private String orderID;
 	@Basic
 	@Column(name = "OrderEmployeeID")
-	private int orderEmployeeID;
+	private String orderEmployeeID;
 	@Basic
 	@Column(name = "OrderSupplierID")
-	private int orderSupplierID;
+	private String orderSupplierID;
 	@Basic
 	@Column(name = "OrderDate")
 	@Temporal(TemporalType.DATE)
@@ -54,11 +45,11 @@ public class Orders {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Orders(int orderID) {
+	public Orders(String orderID) {
 		super();
 		this.orderID = orderID;
 	}
-	public Orders(int orderID, int orderEmployeeID, int orderSupplierID, Date orderDate, Date orderRequiredDate,
+	public Orders(String orderID, String orderEmployeeID, String orderSupplierID, Date orderDate, Date orderRequiredDate,
 			Date orderArrivedDate) {
 		super();
 		this.orderID = orderID;
@@ -68,22 +59,22 @@ public class Orders {
 		this.orderRequiredDate = orderRequiredDate;
 		this.orderArrivedDate = orderArrivedDate;
 	}
-	public int getOrderID() {
+	public String getOrderID() {
 		return orderID;
 	}
-	public void setOrderID(int orderID) {
+	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
-	public int getOrderEmployeeID() {
+	public String getOrderEmployeeID() {
 		return orderEmployeeID;
 	}
-	public void setOrderEmployeeID(int orderEmployeeID) {
+	public void setOrderEmployeeID(String orderEmployeeID) {
 		this.orderEmployeeID = orderEmployeeID;
 	}
-	public int getOrderSupplierID() {
+	public String getOrderSupplierID() {
 		return orderSupplierID;
 	}
-	public void setOrderSupplierID(int orderSupplierID) {
+	public void setOrderSupplierID(String orderSupplierID) {
 		this.orderSupplierID = orderSupplierID;
 	}
 	public Date getOrderDate() {
@@ -114,7 +105,7 @@ public class Orders {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + orderID;
+		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 		return result;
 	}
 	@Override
@@ -126,8 +117,12 @@ public class Orders {
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
-		if (orderID != other.orderID)
+		if (orderID == null) {
+			if (other.orderID != null)
+				return false;
+		} else if (!orderID.equals(other.orderID))
 			return false;
 		return true;
 	}
+	
 }
