@@ -13,20 +13,32 @@
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2 text">
 			<h1>
-				<strong>N1Ne45</strong> Stockists Inventory Management System
+				<strong>N1Ne45</strong> <br/>
+				Stockists Inventory Management System
 			</h1>
 			<div class="description">
 				<p>We are a group of talents would like to provide the BEST
 					services of the World</p>
 			</div>
+			<div>
+				<c:if test="${param.logout != null}">
+		           <div class="alert alert-success">
+		                <p>You have been logged out successfully.</p>
+		            </div>
+		         </c:if>
+		         <c:if test="${param.error != null}">
+	         		<div class="alert alert-danger">
+	                     <p>Invalid username and password.</p>
+	                </div>
+	             </c:if>
+             </div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3 form-box">
 			<div class="form-top">
 				<div class="form-top-left">
-					<h3>Login to our site</h3>
-									
+					<h3>Login to our site</h3>							
 					<p>Enter your username and password to log on:</p>
 				</div>
 				<div class="form-top-right">
@@ -45,11 +57,17 @@
 						<input type="password" id="password" name="password"  placeholder="Password" class="form-password form-control" >
 					</div>
 					<button type="submit" value="Login" class="btn">Sign in</button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />					
 				</form>
+				
 			</div>
 		</div>
 	</div>
+	 <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
 </body>
 </html>
 <!-- 

@@ -13,6 +13,5 @@ public interface UserRepository extends JpaRepository<User, String> {
 //	 User findByName(@Param("Name") String username);
 	
 	@Query("SELECT u FROM User u where u.username = :Name")
-	@Transactional
 	User findByUsername(@Param("Name") String username);
 }

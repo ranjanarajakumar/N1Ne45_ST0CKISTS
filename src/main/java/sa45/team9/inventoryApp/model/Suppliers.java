@@ -17,110 +17,118 @@ public class Suppliers {
 	private List<Parts> parts;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "SupplierID")
-	private String SupplierID;
+	private String supplierID;
 	@Basic
 	@Column(name = "SupplierName")
-	private String SupplierName;
+	private String supplierName;
 	@Basic
 	@Column(name = "SupplierContactName")
-	private String SupplierContactName;
+	private String supplierContactName;
 	@Basic
 	@Column(name = "SupplierContactTitle")
-	private String SupplierContactTitle;
+	private String supplierContactTitle;
 	@Basic
 	@Column(name = "SupplierAddress")
-	private String SupplierAddress;
+	private String supplierAddress;
 	@Basic
 	@Column(name = "SupplierPostalCode")
-	private String SupplierPostalCode;
+	private String supplierPostalCode;
 	@Basic
 	@Column(name = "SupplierPhoneNumber")
-	private String SupplierPhoneNumber;
+	private String supplierPhoneNumber;
 	@Basic
 	@Column(name = "SupplierFax")
-	private String SupplierFax;
+	private String supplierFax;
 	public Suppliers() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Suppliers(String supplierID) {
 		super();
-		SupplierID = supplierID;
+		this.supplierID = supplierID;
 	}
-	public Suppliers(String supplierID, String supplierName, String supplierContactName, String supplierContactTitle,
-			String supplierAddress, String supplierPostalCode, String supplierPhoneNumber, String supplierFax) {
+	public Suppliers(List<Parts> parts, String supplierID, String supplierName, String supplierContactName,
+			String supplierContactTitle, String supplierAddress, String supplierPostalCode, String supplierPhoneNumber,
+			String supplierFax) {
 		super();
-		SupplierID = supplierID;
-		SupplierName = supplierName;
-		SupplierContactName = supplierContactName;
-		SupplierContactTitle = supplierContactTitle;
-		SupplierAddress = supplierAddress;
-		SupplierPostalCode = supplierPostalCode;
-		SupplierPhoneNumber = supplierPhoneNumber;
-		SupplierFax = supplierFax;
+		this.parts = parts;
+		this.supplierID = supplierID;
+		this.supplierName = supplierName;
+		this.supplierContactName = supplierContactName;
+		this.supplierContactTitle = supplierContactTitle;
+		this.supplierAddress = supplierAddress;
+		this.supplierPostalCode = supplierPostalCode;
+		this.supplierPhoneNumber = supplierPhoneNumber;
+		this.supplierFax = supplierFax;
+	}
+	public List<Parts> getParts() {
+		return parts;
+	}
+	public void setParts(List<Parts> parts) {
+		this.parts = parts;
 	}
 	public String getSupplierID() {
-		return SupplierID;
+		return supplierID;
 	}
 	public void setSupplierID(String supplierID) {
-		SupplierID = supplierID;
+		this.supplierID = supplierID;
 	}
 	public String getSupplierName() {
-		return SupplierName;
+		return supplierName;
 	}
 	public void setSupplierName(String supplierName) {
-		SupplierName = supplierName;
+		this.supplierName = supplierName;
 	}
 	public String getSupplierContactName() {
-		return SupplierContactName;
+		return supplierContactName;
 	}
 	public void setSupplierContactName(String supplierContactName) {
-		SupplierContactName = supplierContactName;
+		this.supplierContactName = supplierContactName;
 	}
 	public String getSupplierContactTitle() {
-		return SupplierContactTitle;
+		return supplierContactTitle;
 	}
 	public void setSupplierContactTitle(String supplierContactTitle) {
-		SupplierContactTitle = supplierContactTitle;
+		this.supplierContactTitle = supplierContactTitle;
 	}
 	public String getSupplierAddress() {
-		return SupplierAddress;
+		return supplierAddress;
 	}
 	public void setSupplierAddress(String supplierAddress) {
-		SupplierAddress = supplierAddress;
+		this.supplierAddress = supplierAddress;
 	}
 	public String getSupplierPostalCode() {
-		return SupplierPostalCode;
+		return supplierPostalCode;
 	}
 	public void setSupplierPostalCode(String supplierPostalCode) {
-		SupplierPostalCode = supplierPostalCode;
+		this.supplierPostalCode = supplierPostalCode;
 	}
 	public String getSupplierPhoneNumber() {
-		return SupplierPhoneNumber;
+		return supplierPhoneNumber;
 	}
 	public void setSupplierPhoneNumber(String supplierPhoneNumber) {
-		SupplierPhoneNumber = supplierPhoneNumber;
+		this.supplierPhoneNumber = supplierPhoneNumber;
 	}
 	public String getSupplierFax() {
-		return SupplierFax;
+		return supplierFax;
 	}
 	public void setSupplierFax(String supplierFax) {
-		SupplierFax = supplierFax;
+		this.supplierFax = supplierFax;
 	}
 	@Override
 	public String toString() {
-		return "Suppliers [SupplierID=" + SupplierID + ", SupplierName=" + SupplierName + ", SupplierContactName="
-				+ SupplierContactName + ", SupplierContactTitle=" + SupplierContactTitle + ", SupplierAddress="
-				+ SupplierAddress + ", SupplierPostalCode=" + SupplierPostalCode + ", SupplierPhoneNumber="
-				+ SupplierPhoneNumber + ", SupplierFax=" + SupplierFax + "]";
+		return "Suppliers [parts=" + parts + ", supplierID=" + supplierID + ", supplierName=" + supplierName
+				+ ", supplierContactName=" + supplierContactName + ", supplierContactTitle=" + supplierContactTitle
+				+ ", supplierAddress=" + supplierAddress + ", supplierPostalCode=" + supplierPostalCode
+				+ ", supplierPhoneNumber=" + supplierPhoneNumber + ", supplierFax=" + supplierFax + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((SupplierID == null) ? 0 : SupplierID.hashCode());
+		result = prime * result + ((supplierID == null) ? 0 : supplierID.hashCode());
 		return result;
 	}
 	@Override
@@ -132,12 +140,28 @@ public class Suppliers {
 		if (getClass() != obj.getClass())
 			return false;
 		Suppliers other = (Suppliers) obj;
-		if (SupplierID == null) {
-			if (other.SupplierID != null)
+		if (supplierID == null) {
+			if (other.supplierID != null)
 				return false;
-		} else if (!SupplierID.equals(other.SupplierID))
+		} else if (!supplierID.equals(other.supplierID))
 			return false;
 		return true;
+	}
+
+
+
+	public Parts addPart(Parts part) {
+		getParts().add(part);
+		part.setSupplier(this);
+
+		return part;
+	}
+
+	public Parts removePart(Parts part) {
+		getParts().remove(part);
+		part.setSupplier(null);
+
+		return part;
 	}
 	
 }

@@ -31,6 +31,7 @@
 	<canvas id="canvas"></canvas>
 	<i class="fa fa-lock" id="screen_unlock"></i>
 </div>
+
 <div id="modalbox">
 	<div class="devoops-modal">
 		<div class="devoops-modal-header">
@@ -47,13 +48,16 @@
 		</div>
 		<div class="devoops-modal-bottom">
 		</div>
+		  
 	</div>
+	
 </div>
+
 <header class="navbar">
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="index.html">N1Ne45</a>
+				<a href="/admin/home">N1Ne45</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -64,8 +68,6 @@
 						</div>
 					</div>
 					<div class="col-xs-4 col-sm-8 top-panel-right">
-						<a href="#" class="about">about</a>
-						<a href="index_v1.html" class="style1"></a>
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="hidden-xs">
 								<a href="index.html" class="modal-link">
@@ -86,7 +88,7 @@
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+								<a href="" class="dropdown-toggle account" data-toggle="dropdown">
 									<div class="avatar">
 										<img src="img/avatar.jpg" class="img-circle" alt="avatar" />
 									</div>
@@ -98,7 +100,7 @@
 								</a>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="#">
+										<a href="">
 											<i class="fa fa-user"></i>
 											<span>Profile</span>
 										</a>
@@ -122,13 +124,13 @@
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="">
 											<i class="fa fa-cog"></i>
 											<span>Settings</span>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+											<a href="<c:url value="/logout" />">
 											<i class="fa fa-power-off"></i>
 											<span>Logout</span>
 										</a>
@@ -149,18 +151,24 @@
 		<div id="sidebar-left" class="col-xs-2 col-sm-2">
 			<ul class="nav main-menu">
 				<li>
-					<a href="ajax/dashboard.html" class="ajax-link">
+					<a href="#" class="ajax-link">
 						<i class="fa fa-dashboard"></i>
-						<span class="hidden-xs">Dashboard</span>
+						<span class="hidden-xs">Main Page</span>
 					</a>
 				</li>
 				<li class="dropdown">
+				<!-- 
+				<a href="#" class="dropdown-toggle"></a>
+				 -->
 					<a href="#" class="dropdown-toggle">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs">Charts</span>
+						<span class="hidden-xs">Manage Users</span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="ajax-link" href="ajax/charts_xcharts.html">xCharts</a></li>
+					<!-- 
+					<li><a class="ajax-link" href= "<c:url value="${pageContext.request.contextPath}/admin/home/registration"/>">Add New User</a></li>
+					 -->										
+						<li><a class="ajax-link" href="anmin/home.jsp#registration">Add New User</a></li>
 						<li><a class="ajax-link" href="ajax/charts_flot.html">Flot Charts</a></li>
 						<li><a class="ajax-link" href="ajax/charts_google.html">Google Charts</a></li>
 						<li><a class="ajax-link" href="ajax/charts_morris.html">Morris Charts</a></li>
@@ -170,7 +178,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="" class="dropdown-toggle">
 						<i class="fa fa-table"></i>
 						 <span class="hidden-xs">Tables</span>
 					</a>
@@ -181,7 +189,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="" class="dropdown-toggle">
 						<i class="fa fa-pencil-square-o"></i>
 						 <span class="hidden-xs">Forms</span>
 					</a>
@@ -192,7 +200,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="" class="dropdown-toggle">
 						<i class="fa fa-desktop"></i>
 						 <span class="hidden-xs">UI Elements</span>
 					</a>
@@ -205,7 +213,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="" class="dropdown-toggle">
 						<i class="fa fa-list"></i>
 						 <span class="hidden-xs">Pages</span>
 					</a>
@@ -225,7 +233,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="" class="dropdown-toggle">
 						<i class="fa fa-map-marker"></i>
 						<span class="hidden-xs">Maps</span>
 					</a>
@@ -236,7 +244,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="" class="dropdown-toggle">
 						<i class="fa fa-picture-o"></i>
 						 <span class="hidden-xs">Gallery</span>
 					</a>
@@ -258,60 +266,60 @@
 					</a>
 				 </li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="" class="dropdown-toggle">
 						<i class="fa fa-picture-o"></i>
 						 <span class="hidden-xs">Multilevel menu</span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">First level menu</a></li>
-						<li><a href="#">First level menu</a></li>
+						<li><a href="">First level menu</a></li>
+						<li><a href="">First level menu</a></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle">
+							<a href="" class="dropdown-toggle">
 								<i class="fa fa-plus-square"></i>
 								<span class="hidden-xs">Second level menu group</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Second level menu</a></li>
-								<li><a href="#">Second level menu</a></li>
+								<li><a href="">Second level menu</a></li>
+								<li><a href="">Second level menu</a></li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle">
+									<a href="" class="dropdown-toggle">
 										<i class="fa fa-plus-square"></i>
 										<span class="hidden-xs">Three level menu group</span>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a href="#">Three level menu</a></li>
-										<li><a href="#">Three level menu</a></li>
+										<li><a href="">Three level menu</a></li>
+										<li><a href="">Three level menu</a></li>
 										<li class="dropdown">
-											<a href="#" class="dropdown-toggle">
+											<a href="" class="dropdown-toggle">
 												<i class="fa fa-plus-square"></i>
 												<span class="hidden-xs">Four level menu group</span>
 											</a>
 											<ul class="dropdown-menu">
-												<li><a href="#">Four level menu</a></li>
-												<li><a href="#">Four level menu</a></li>
+												<li><a href="">Four level menu</a></li>
+												<li><a href="">Four level menu</a></li>
 												<li class="dropdown">
-													<a href="#" class="dropdown-toggle">
+													<a href="" class="dropdown-toggle">
 														<i class="fa fa-plus-square"></i>
 														<span class="hidden-xs">Five level menu group</span>
 													</a>
 													<ul class="dropdown-menu">
-														<li><a href="#">Five level menu</a></li>
-														<li><a href="#">Five level menu</a></li>
+														<li><a href="">Five level menu</a></li>
+														<li><a href="">Five level menu</a></li>
 														<li class="dropdown">
-															<a href="#" class="dropdown-toggle">
+															<a href="" class="dropdown-toggle">
 																<i class="fa fa-plus-square"></i>
 																<span class="hidden-xs">Six level menu group</span>
 															</a>
 															<ul class="dropdown-menu">
-																<li><a href="#">Six level menu</a></li>
-																<li><a href="#">Six level menu</a></li>
+																<li><a href="">Six level menu</a></li>
+																<li><a href="">Six level menu</a></li>
 															</ul>
 														</li>
 													</ul>
 												</li>
 											</ul>
 										</li>
-										<li><a href="#">Three level menu</a></li>
+										<li><a href="">Three level menu</a></li>
 									</ul>
 								</li>
 							</ul>

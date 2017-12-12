@@ -13,7 +13,7 @@ public class Orders {
 	private List<OrderDetails> orderDetails;
 		
 	@ManyToOne
-	@JoinColumn(name="EmployeeID")
+	@JoinColumn(name="orderEmployeeID")
 	private Employees employees;
 	
 	@Id

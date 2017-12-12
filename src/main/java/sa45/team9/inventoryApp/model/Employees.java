@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
-@Table(name="Employee")
+@Table(name="Employees")
 public class Employees {
 	
 	@OneToMany(targetEntity=Customers.class, mappedBy="employees")

@@ -1,14 +1,18 @@
 package sa45.team9.inventoryApp.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,10 +24,9 @@ import sa45.team9.inventoryApp.services.IUserService;
 
 @Controller
 public class LoginController {
-
 	@Autowired
 	private IUserService userService;
-	
+
 	@RequestMapping("/") 
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
@@ -40,18 +43,35 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
+	@RequestMapping(value="/home", method = RequestMethod.GET)
+	public ModelAndView defaultPage(Model model) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("home");
+		SecurityContext context = SecurityContextHolder.getContext();
+		model.addAttribute("message", context.getAuthentication().getName());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="admin/home", method = RequestMethod.GET)
 	 public ModelAndView adminHome(Model model){
 	 ModelAndView modelAndView = new ModelAndView();
 	 SecurityContext context = SecurityContextHolder.getContext();
-	 //User user = userService.findUserByName(auth.getName());
+	 //User user = userService.findUserByName(context.);
 	 //modelAndView.addObject("userName", "Welcome " + user.getName() + " " +
 	 //user.getLastName() + " (" + user.getEmail() + ")");
 	 modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-	 model.addAttribute("message", "You are logged in as " + context.getAuthentication().getName());
-	 modelAndView.setViewName("/admin/home");
+	 model.addAttribute("message", context.getAuthentication().getName());
+	 modelAndView.setViewName("admin/home");
 	 return modelAndView;
 	 }
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	    return "redirect:/login?logout";
+	}
 	
 //	@RequestMapping(value="/login", method = RequestMethod.POST)
 //	public ModelAndView authenticate(Model model){
@@ -71,40 +91,8 @@ public class LoginController {
 //		model.addAttribute("message", "You are logged in as " + context.getAuthentication().getName());
 //		//mav = new ModelAndView("redirect:/admin/home");
 //		return "/admin/home";		
-//	}
+//	}						
 	
-		
-	
-	
-	
-
-	@RequestMapping(value = "/registration", method = RequestMethod.GET)
-	public ModelAndView registration() {
-		ModelAndView modelAndView = new ModelAndView();
-		User user = new User();
-		modelAndView.addObject("user", user);
-		modelAndView.setViewName("registration");
-		return modelAndView;
-	}
-	 @RequestMapping(value = "/registration", method = RequestMethod.POST)
-	 public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
-	 ModelAndView modelAndView = new ModelAndView();
-	 User userExists = userService.findUserByName(user.getUsername());
-	 if (userExists != null) {
-	 bindingResult
-	 .rejectValue("email", "error.user", "There is already a user registered with this name");
-	 }
-	 if (bindingResult.hasErrors()) {
-	 modelAndView.setViewName("registration");
-	 }
-	 else {
-	 userService.saveUser(user);
-	 modelAndView.addObject("successMessage", "User has been registered successfully");
-	 modelAndView.addObject("user", new User());
-	 modelAndView.setViewName("registration");
-	 }
-	 return modelAndView;
-	 }
 	 
 	 
 	

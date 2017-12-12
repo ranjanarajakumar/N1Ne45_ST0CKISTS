@@ -15,11 +15,13 @@ import javax.persistence.Table;
 public class Parts {
     @OneToMany(targetEntity=OrderDetails.class, mappedBy="parts")
     private List<OrderDetails> orderDetails;
+    
     @ManyToOne
-    @JoinColumn(name="SupplierID")
+    @JoinColumn(name="partSupplierID",insertable = false, updatable = false)
     private Suppliers suppliers;
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PartNumber")
     private String partNumber;
     @Basic
@@ -64,6 +66,7 @@ public class Parts {
     @Basic
     @Column(name = "PartDiscontinued")
     private String partDiscontinued;
+    
     public Parts() {
         super();
         // TODO Auto-generated constructor stub
@@ -231,4 +234,43 @@ public class Parts {
                 + partMinimumReorderQuantity + ", partShelfLocation=" + partShelfLocation + ", partDiscontinued="
                 + partDiscontinued + "]";
     }
+    
+    public List<OrderDetails> getOrderdeatals() {
+		return this.orderDetails;
+	}
+
+	public void setOrderdeatals(List<OrderDetails> orderdeatals) {
+		this.orderDetails = orderdeatals;
+	}
+
+//	public OrderDetails addOrderdeatal(OrderDetails orderdeatal) {
+//		getOrderdeatals().add(orderdeatal);
+//		orderdeatal.setParts(this);
+//
+//		return orderdeatal;
+//	}
+//
+//	public OrderDetails removeOrderdeatal(OrderDetails orderdeatal) {
+//		getOrderdeatals().remove(orderdeatal);
+//		orderdeatal.setParts(null);
+//
+//		return orderdeatal;
+//	}
+    public int getOrderquality() {
+    	int quality = this.getPartReorderLevel() - this.getPartUnitInStock();
+		if (quality >= this.getPartMinimumReorderQuantity())
+			return quality;
+		else
+			return this.getPartMinimumReorderQuantity();
+    	
+    }
+    
+	public Suppliers getSupplier() {
+		return this.suppliers;
+	}
+
+	public void setSupplier(Suppliers supplier) {
+		this.suppliers = supplier;
+	}
+
 }
